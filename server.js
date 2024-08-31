@@ -20,7 +20,7 @@ const corsAllow = {
 }
 const app = express();
 const dbConnection = () => {
-    mongoose.connect("mongodb+srv://connectcodesofrohan:3PJOQJ5aKppIe1o3@first.sgi1nyx.mongodb.net/BloggingWebsite")
+    mongoose.connect(process.env.MONGO_STRING)
     .then(() => {
         console.log(chalk.yellow.inverse.bold('db is connected'))
     }).catch((e) => {
@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsAllow));
 app.use('/api/user', userRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/com', comRouter);

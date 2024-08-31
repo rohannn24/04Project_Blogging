@@ -344,3 +344,14 @@ export const getBlogById = async (req, res) => {
         blog
     })
 }
+
+export const getCommentByBlogId = async (req, res) => {
+    const blog = await blogModel.findOne({_id: req.params.id});
+    const comments = (await blog.populate('commentId')).commentId;
+    res.status(200).json({
+        success: true,
+        message: 'data fetched....',
+        comments
+    })
+
+}
