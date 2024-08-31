@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors(corsAllow));
+app.use(cors());
 app.use('/api/user', userRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/com', comRouter);
