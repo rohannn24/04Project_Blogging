@@ -14,7 +14,7 @@ import homeRouter from './router/home.router.js'
 env.config();
 
 const corsAllow = {
-    origin: 'https://04-project-blogging-client.vercel.app',
+    origin: 'https://04-project-blogging-client.vercel.app, http://localhost:5173',
     method: 'POST, GET, PUT, PATCH, HEAD',
     credential: true
 }
