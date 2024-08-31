@@ -46,7 +46,7 @@ export const login = async (req, res) => {
             } else {
                 const password = admin.password;
                 if (bcrypt.compareSync(req.body.password, password)) {
-                    const token = jwt.sign({ id: admin._id }, process.env.KEY);
+                    const token = jwt.sign({ id: admin._id }, process.env.KEY || 'defaultSecretKey');
                     const { password, ...others } = admin._doc;
                     res.cookie('token', token, {
                         httpOnly: true
@@ -134,7 +134,7 @@ export const register = async (req, res) => {
             const hash = bcrypt.hashSync(password, salt);
             const newAdmin = new adminModel({ ...req.body, password: hash, otp });
             await newAdmin.save();
-            const token = jwt.sign({ id: newAdmin._id }, process.env.KEY);
+            const token = jwt.sign({ id: newAdmin._id }, process.env.KEY || 'defaultSecretKey');
             const { password: hashedPassword, ...others } = newAdmin._doc;
 
             res.cookie('token', token, {
