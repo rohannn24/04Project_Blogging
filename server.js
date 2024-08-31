@@ -20,7 +20,7 @@ const corsAllow = {
 }
 const app = express();
 const dbConnection = () => {
-    mongoose.connect(process.env.MONGO_STRING)
+    mongoose.connect("mongodb+srv://connectcodesofrohan:3PJOQJ5aKppIe1o3@first.sgi1nyx.mongodb.net/BloggingWebsite")
     .then(() => {
         console.log(chalk.yellow.inverse.bold('db is connected'))
     }).catch((e) => {
